@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AdminService} from "../../Services/admin.service";
-import {Reservation} from "../../Model/reservation";
+import {Reservation} from "../../Model/Reservation";
 import {User} from "../../Model/User";
 import {Book} from "../../Model/Book";
 import {NgForm} from "@angular/forms";

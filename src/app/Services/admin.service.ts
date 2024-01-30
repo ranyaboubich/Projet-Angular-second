@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Book} from "../Model/Book";
 import {User} from "../Model/User";
-import {Reservation} from "../Model/reservation";
+import {Reservation} from "../Model/Reservation";
 import {AuthService} from "./auth.service";
 
 @Injectable({
