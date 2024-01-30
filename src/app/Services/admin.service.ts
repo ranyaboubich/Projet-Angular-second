@@ -51,10 +51,18 @@ export class AdminService {
   }
 
   updateBook(id: number, book: any) {
-    return this.http.put<Book>('http://localhost:3000/books/' + id, book, { headers: this.getHttpHeaders() });
+    return this.http.patch<Book>('http://localhost:3000/books/' + id, book, { headers: this.getHttpHeaders() });
   }
 
-  addBook(book: Book) {
+  addBook(book: {
+    keywords: any;
+    instances: any;
+    author: any;
+    coverImageUrl: any;
+    description: any;
+    title: any;
+    category: any
+  }) {
     return this.http.post<Book>('http://localhost:3000/books/', book, { headers: this.getHttpHeaders() });
   }
 }

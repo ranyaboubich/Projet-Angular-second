@@ -2,7 +2,7 @@
   width: 70%;
   margin: auto;
   margin-top: 50px;
-  margin-left: -20%;
+  margin-left: -50%;
 }
 
 .update-user{
@@ -45,13 +45,22 @@ table th {
   background-color: rosybrown;
   color: white;
 }
-.update-user form .btn, .delete-user form .btn {
+.update-user form .btn, .delete-user form .btn, .add-book form .btn, .update-book form .btn, .delete-book form .btn, .delete-reservation form .btn {
   display: block;
   margin: 0 auto;
 }
 
-.update-user form input, .delete-user form input {
+.update-user form input, .delete-user form input, .add-book form input, .update-book form input, .delete-book form input , .delete-reservation form input{
   margin-bottom: 10px; /* Adjust this value as needed */
+}
+
+.delete-reservation, .delete-book{
+  margin-top: 50px;
+}
+
+.add-book, .delete-user, .delete-reservation, .update-book, .delete-book{
+  margin-left: 20%;
+  width: 80%;
 }
 
 

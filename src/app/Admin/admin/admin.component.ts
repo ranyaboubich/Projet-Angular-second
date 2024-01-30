@@ -30,6 +30,7 @@ export class AdminComponent {
   }
 
   updateUser(form: NgForm) {
+    //const user: Partial<User> = {};
     const user = {
       id: form.value.id,
       email: form.value.email,
@@ -45,6 +46,48 @@ export class AdminComponent {
   deleteUser(id: number) {
     this.adminService.deleteUser(id).subscribe(user => {
       console.log('User deleted');
+    });
+  }
+
+  addBook(form: NgForm) {
+    const book = {
+      title: form.value.title,
+      author: form.value.author,
+      instances: form.value.instances,
+      category: form.value.category,
+      description: form.value.description,
+      keywords: form.value.keywords,
+      coverImageUrl: form.value.image
+    };
+    this.adminService.addBook(book).subscribe(book => {
+      console.log('Book added');
+    });
+  }
+
+  updateBook(form: NgForm) {
+    const book = {
+      id: form.value.id,
+      title: form.value.title,
+      author: form.value.author,
+      instances: form.value.instances,
+      category: form.value.category,
+      description: form.value.description,
+      keywords: form.value.keywords,
+      coverImageUrl: form.value.image
+    };
+    this.adminService.updateBook(book.id, book).subscribe(book => {
+      console.log('Book updated');
+    });
+  }
+  deleteBook(id: number) {
+    this.adminService.deleteBook(id).subscribe(book => {
+      console.log('Book deleted');
+    });
+  }
+
+  deleteReservation(id: number) {
+    this.adminService.deleteReservation(id).subscribe(reservation => {
+      console.log('Reservation deleted');
     });
   }
 }

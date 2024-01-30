@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
   <div class="content">
     <h2>Users</h2>
       <table>
@@ -57,24 +57,75 @@
       </table>
   </div>
     </div>
-    <div class="col-sm-6">
+
+    <div class="col-sm-8">
       <div class="update-user">
       <form #update_form="ngForm" id="container" (ngSubmit)="updateUser(update_form)">
         <h2>Update user</h2>
-        <input #idInput="ngModel" required id="id" type="number" ngModel name="id" placeholder="id" class="form-control">
-        <input #emailInput="ngModel" email  id="email" type="text" ngModel name="email" placeholder="Email" class="form-control">
-        <input #usernameInput="ngModel"  id="username" type="text" ngModel name="username" placeholder="Username" class="form-control">
+        <input  required id="id" type="number" ngModel name="id" placeholder="id" class="form-control">
+        <input  email  id="email" type="text" ngModel name="email" placeholder="Email" class="form-control">
+        <input  id="username" type="text" ngModel name="username" placeholder="Username" class="form-control">
         <input  id="pass" type="password" ngModel name="pass" class="form-control" placeholder="Password" minlength=4>
         <button [disabled]="update_form.invalid" class="btn btn-danger">Update</button>
       </form>
       </div>
+
       <div class="delete-user">
         <h2>Delete user</h2>
         <form #delete_form="ngForm" id="delete-user" (ngSubmit)="deleteUser(delete_form.value.id)">
-        <input #idInput="ngModel" required id="id1" type="number" ngModel name="id" placeholder="id" class="form-control">
+        <input required id="id1" type="number" ngModel name="id" placeholder="id" class="form-control">
         <button [disabled]="delete_form.invalid" class="btn btn-danger">delete</button>
       </form>
       </div>
+
+      <div class="delete-reservation">
+        <h2>Delete reservation</h2>
+        <form #delete_reservation="ngForm" id="delete-reservation" (ngSubmit)="deleteReservation(delete_reservation.value.id)">
+        <input required id="id2" type="number" ngModel name="id" placeholder="id" class="form-control">
+
+        <button [disabled]="delete_reservation.invalid" class="btn btn-danger">delete</button>
+      </form>
+      </div>
+
+      <div class="delete-book">
+        <h2>Delete book</h2>
+        <form #delete_book="ngForm" id="delete-book" (ngSubmit)="deleteBook(delete_book.value.id)">
+          <input required id="id-delete-book" type="number" ngModel name="id" placeholder="id" class="form-control">
+          <button [disabled]="delete_book.invalid" class="btn btn-danger">delete</button>
+        </form>
+      </div>
+
+    <div class="add-book">
+      <form #add_book="ngForm" id="add-book" (ngSubmit)="addBook(add_book)">
+        <h2>Add book</h2>
+        <input required id="title" type="text" ngModel name="title" placeholder="Title" class="form-control">
+        <input required id="author" type="text" ngModel name="author" placeholder="Author" class="form-control">
+        <input required id="instances" type="number" ngModel name="instances" placeholder="Instances" class="form-control">
+        <input required id="category" type="text" ngModel name="category" placeholder="Category" class="form-control">
+        <input required id="keywords" type="text" ngModel name="keywords" placeholder="Keywords" class="form-control">
+        <input required id="description" type="text" ngModel name="description" placeholder="Description" class="form-control">
+        <input required id="image" type="text" ngModel name="image" placeholder="Image" class="form-control">
+
+        <button [disabled]="add_book.invalid" class="btn btn-danger">Add</button>
+      </form>
     </div>
-  </div>
+
+      <div class="update-book">
+      <form #update_book="ngForm" id="update-book" (ngSubmit)="updateBook(update_book)">
+        <h2>Update book</h2>
+        <input required id="id_update_book" type="number" ngModel name="id" placeholder="id" class="form-control">
+        <input id="title1" type="text" ngModel name="title" placeholder="Title" class="form-control">
+        <input id="author1" type="text" ngModel name="author" placeholder="Author" class="form-control">
+        <input id="instances1" type="number" ngModel name="instances" placeholder="Instances" class="form-control">
+        <input id="category1" type="text" ngModel name="category" placeholder="Category" class="form-control">
+        <input id="keywords1" type="text" ngModel name="keywords" placeholder="Keywords" class="form-control">
+        <input id="description1" type="text" ngModel name="description" placeholder="Description" class="form-control">
+        <input id="image1" type="text" ngModel name="image" placeholder="Image" class="form-control">
+
+        <button [disabled]="update_book.invalid" class="btn btn-danger">Update</button>
+      </form>
+      </div>
+    </div>
 </div>
+</div>
+
