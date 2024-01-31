@@ -24,23 +24,16 @@
       </ng-template>
     </p-rating>
   </label>
-  <!-- <input type="number" formControlName="rating" min="1" max="5" />
-  </label>-->
 
   <button type="submit">Submit</button>
 </form>
 
-<div *ngFor="let review of reviews">
+<div
+  style="background-color: rgba(255, 252, 240, 0.784); margin-right: 50px"
+  *ngFor="let review of reviews"
+>
   <h3>{{ review.user.username }}</h3>
   <p>{{ review.content }}</p>
-  <p>
-    Rating:
-    <star-rating
-      [starType]="'icon'"
-      [hoverEnabled]="false"
-      [rating]="review.rating"
-      [readOnly]="true"
-    ></star-rating>
-    <!-- <span *ngFor="let star of getStars(review.rating)">⭐</span> -->
-  </p>
+
+  <span *ngFor="let star of getStars(review.rating)">⭐</span>
 </div>

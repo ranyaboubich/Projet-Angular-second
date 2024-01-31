@@ -42,24 +42,21 @@ export class DiscussionComponent implements OnInit {
       });
     this.id = this.route.snapshot.paramMap.get('id');
   }
-  onClick(event: { rating: number }) {
-    /* console.log('onClick $event: ', $event);
-    this.onClickResult = $event; */
-  }
+
+  review!: Review;
   onSubmit() {
-    console.warn(this.reviewForm.value);
+    if (this.reviewForm.valid) {
+      this.reviewService.createReview(id, review).subscribe(
+        (data) => {
+          console.log('Review created', data);
+        },
+        (error) => {
+          console.log('Error', error);
+        }
+      );
+    }
   }
-
-  onRatingChange = ($event: RatingChangeEvent) => {
-    console.log('onRatingUpdated $event: ', $event);
-    this.onRatingChangeResult = $event;
-  };
-  onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-    console.log('onHoverRatingChange $event: ', $event);
-    this.onHoverRatingChangeResult = $event;
-  };
-
-  getStars(rating: string) {
+  getStars(rating: number) {
     return Array(rating);
   }
 }
