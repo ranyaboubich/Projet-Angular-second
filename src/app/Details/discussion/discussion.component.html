@@ -5,8 +5,24 @@
   </label>
   <label>
     Rating:
+    <p-rating formControlName="value" [cancel]="false" [stars]="5">
+      <ng-template pTemplate="onicon">
+        <img
+          src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon-active.png"
+          width="25px"
+          height="25px"
+        />
+      </ng-template>
+      <ng-template pTemplate="officon">
+        <img
+          src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon.png"
+          width="25px"
+          height="25px"
+        />
+      </ng-template>
+    </p-rating>
   </label>
- <!-- <input type="number" formControlName="rating" min="1" max="5" />
+  <!-- <input type="number" formControlName="rating" min="1" max="5" />
   </label>-->
 
   <button type="submit">Submit</button>
@@ -17,7 +33,12 @@
   <p>{{ review.content }}</p>
   <p>
     Rating:
-    <star-rating [starType]="'icon'" [hoverEnabled]="false" [rating]="review.rating" [readOnly]="true"></star-rating>
-   <!-- <span *ngFor="let star of getStars(review.rating)">⭐</span> -->
+    <star-rating
+      [starType]="'icon'"
+      [hoverEnabled]="false"
+      [rating]="review.rating"
+      [readOnly]="true"
+    ></star-rating>
+    <!-- <span *ngFor="let star of getStars(review.rating)">⭐</span> -->
   </p>
 </div>
