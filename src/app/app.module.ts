@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LibraryComponent } from './Library/library/library.component';
@@ -22,6 +21,7 @@ import { AdminComponent } from './Admin/admin/admin.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    StarRatingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

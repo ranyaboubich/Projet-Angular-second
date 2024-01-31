@@ -17,13 +17,13 @@
 
   <ul class="navbar-list navbar-list-right">
     <li class="nav-item" [routerLinkActive]="'active'">
-      <a class="nav-link" *ngIf="currentUser.user.isAdmin" [routerLink]="['admin']">Admin</a>
+      <a class="nav-link" *ngIf="currentUser?.user?.isAdmin" [routerLink]="['admin']">Admin</a>
     </li>
     <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link" *ngIf="!authService.currentUserValue" [routerLink]="['signin']">Signup</a>
+      <a class="nav-link" *ngIf="!currentUser" [routerLink]="['signin']">Signup</a>
     </li>
     <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link" *ngIf="!authService.currentUserValue; else logout" [routerLink]="['login']">login</a>
+      <a class="nav-link" *ngIf="!currentUser; else logout" [routerLink]="['login']">login</a>
     </li>
     <li class="nav-item">
       <ng-template #logout>

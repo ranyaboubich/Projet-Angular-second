@@ -5,8 +5,16 @@
   </label>
   <label>
     Rating:
-    <input type="number" formControlName="rating" min="1" max="5" />
+    <star-rating
+            [hoverEnabled]="true"
+            (starClickChange)="onClick($event)"
+            (ratingChange)="onRatingChange($event)"
+            (hoverRatingChange)="onHoverRatingChange($event)">
+          </star-rating>
   </label>
+ <!-- <input type="number" formControlName="rating" min="1" max="5" />
+  </label>-->
+
   <button type="submit">Submit</button>
 </form>
 
@@ -15,6 +23,7 @@
   <p>{{ review.content }}</p>
   <p>
     Rating:
-    <span *ngFor="let star of getStars(review.rating)">⭐</span>
+    <star-rating [starType]="'icon'" [hoverEnabled]="false" [rating]="review.rating" [readOnly]="true"></star-rating>
+   <!-- <span *ngFor="let star of getStars(review.rating)">⭐</span> -->
   </p>
 </div>

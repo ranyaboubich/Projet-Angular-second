@@ -7,7 +7,7 @@ import { Review } from '../Model/Review';
   providedIn: 'root',
 })
 export class ReviewService {
-  private apiUrl = 'http://localhost:3000/reviews'; // Replace with your actual API URL
+  private apiUrl = 'http://localhost:3000/reviews'; 
 
   constructor(private http: HttpClient) {}
 
@@ -15,8 +15,8 @@ export class ReviewService {
     return this.http.post<Review>(this.apiUrl, review);
   }
 
-  getReviews(name: string, author: string): Observable<Review[]> {
-    let params = new HttpParams().set('name', name).set('author', author);
+  getReviews(title: string, author: string): Observable<Review[]> {
+    let params = new HttpParams().set('title', title).set('author', author);
     return this.http.get<Review[]>(this.apiUrl, { params: params });
   }
 }

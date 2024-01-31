@@ -3,6 +3,7 @@ import { ReviewService } from '../../Services/review.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Review } from '../../Model/Review';
 import { Book } from '../../Model/Book';
+import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 
 @Component({
   selector: 'app-discussion',
@@ -17,20 +18,42 @@ export class DiscussionComponent implements OnInit {
     rating: new FormControl(''),
   });
 
-  constructor(private reviewService: ReviewService) {}
+  
+  constructor(private reviewService: ReviewService) {
+    
+  }
+  onClickResult!: ClickEvent;
+  onRatingChangeResult!: RatingChangeEvent;
+  onHoverRatingChangeResult!: HoverRatingChangeEvent;
+
+
 
   ngOnInit() {
     this.reviewService
       .getReviews(this.book.title, this.book.author)
       .subscribe((reviews) => {
         this.reviews = reviews;
+        console.log(reviews);
       });
+  }
+  onClick($event: ClickEvent){
+    console.log('onClick $event: ', $event);
+    this.onClickResult = $event;
   }
   onSubmit() {
     console.warn(this.reviewForm.value);
   }
 
-  getStars(rating: number) {
+  onRatingChange = ($event: RatingChangeEvent) => {
+    console.log('onRatingUpdated $event: ', $event);
+    this.onRatingChangeResult = $event;
+  };
+  onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
+    console.log('onHoverRatingChange $event: ', $event);
+    this.onHoverRatingChangeResult = $event;
+  };
+
+  getStars(rating: string) {
     return Array(rating);
   }
 }

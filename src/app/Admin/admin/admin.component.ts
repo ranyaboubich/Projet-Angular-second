@@ -30,17 +30,28 @@ export class AdminComponent {
   }
 
   updateUser(form: NgForm) {
-    //const user: Partial<User> = {};
+   /* const user: Partial<User> = {
+      id: form.value.id
+    };
+    if (form.value.email) {
+      user.email = form.value.email;
+    }
+    if (form.value.username) {
+      user.username = form.value.username;
+    }
+    if (form.value.password) {
+      user.password = form.value.password;
+    } */
     const user = {
       id: form.value.id,
       email: form.value.email,
       username: form.value.username,
       password: form.value.password
-    };
+    }; 
 
     this.adminService.updateUser(user.id, user).subscribe(user => {
       console.log('User updated');
-    });
+    }); 
   }
 
   deleteUser(id: number) {
