@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './Login/login/login.component';
 import { HeaderComponent } from './Header/header/header.component';
 import { EventComponent } from './Events/event/event.component';
+import { RatingModule } from 'primeng/rating';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './Home/home/home.component';
 import { SigninComponent } from './SignIn/signin/signin.component';
@@ -22,7 +23,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StarRatingModule } from 'angular-star-rating';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { StarRatingModule } from 'angular-star-rating';
     HttpClientModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    RatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

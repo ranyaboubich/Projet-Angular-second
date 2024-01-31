@@ -1,10 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ReviewService } from '../../Services/review.service';
+import { RatingModule } from 'primeng/rating';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Review } from '../../Model/Review';
 import { Book } from '../../Model/Book';
 import { ActivatedRoute } from '@angular/router';
-import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
+import {
+  ClickEvent,
+  HoverRatingChangeEvent,
+  RatingChangeEvent,
+} from 'angular-star-rating';
 
 @Component({
   selector: 'app-discussion',
@@ -19,18 +24,14 @@ export class DiscussionComponent implements OnInit {
     rating: new FormControl(''),
   });
   id: any;
-  
+
   constructor(
     private reviewService: ReviewService,
     private route: ActivatedRoute
-    ) {
-    
-  }
+  ) {}
   onClickResult!: ClickEvent;
   onRatingChangeResult!: RatingChangeEvent;
   onHoverRatingChangeResult!: HoverRatingChangeEvent;
-
-
 
   ngOnInit() {
     this.reviewService
@@ -39,9 +40,9 @@ export class DiscussionComponent implements OnInit {
         this.reviews = reviews;
         console.log(reviews);
       });
-      this.id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
   }
-  onClick(event: { rating: number; }){
+  onClick(event: { rating: number }) {
     /* console.log('onClick $event: ', $event);
     this.onClickResult = $event; */
   }
