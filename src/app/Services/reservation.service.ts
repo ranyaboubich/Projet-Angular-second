@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../Model/User';
 
 
 @Injectable({
@@ -18,7 +20,12 @@ export class ReservationService {
     const token = currentUser.access_token;
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-  addreservation(id: number){
-    return this.http.post(this.apiUrl+id,{headers: this.getHttpHeaders()});
+  addreservation(id: number) : Observable<any>{
+        // @ts-ignore
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const token = currentUser.access_token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    console.log(headers);
+    return this.http.post('http://localhost:3000/reservation/'+id,{headers});
   }
 }
