@@ -3,6 +3,7 @@ import { ReviewService } from '../../Services/review.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Review } from '../../Model/Review';
 import { Book } from '../../Model/Book';
+import { ActivatedRoute } from '@angular/router';
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 
 @Component({
@@ -17,9 +18,12 @@ export class DiscussionComponent implements OnInit {
     comment: new FormControl(''),
     rating: new FormControl(''),
   });
-
+  id: any;
   
-  constructor(private reviewService: ReviewService) {
+  constructor(
+    private reviewService: ReviewService,
+    private route: ActivatedRoute
+    ) {
     
   }
   onClickResult!: ClickEvent;
@@ -35,10 +39,11 @@ export class DiscussionComponent implements OnInit {
         this.reviews = reviews;
         console.log(reviews);
       });
+      this.id = this.route.snapshot.paramMap.get('id');
   }
-  onClick($event: ClickEvent){
-    console.log('onClick $event: ', $event);
-    this.onClickResult = $event;
+  onClick(event: { rating: number; }){
+    /* console.log('onClick $event: ', $event);
+    this.onClickResult = $event; */
   }
   onSubmit() {
     console.warn(this.reviewForm.value);
