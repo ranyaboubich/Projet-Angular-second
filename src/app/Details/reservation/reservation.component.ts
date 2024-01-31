@@ -20,7 +20,7 @@ export class ReservationComponent {
           console.log(response);
           // Handle successful reservation here
         },
-        error => {
+        error => {          
           console.log(error);
           // Handle errors here
         }
