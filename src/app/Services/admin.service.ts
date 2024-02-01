@@ -4,6 +4,7 @@ import {Book} from "../Model/Book";
 import {User} from "../Model/User";
 import {Reservation} from "../Model/Reservation";
 import {AuthService} from "./auth.service";
+import {WaitingList} from "../Model/WaitingList";
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,9 @@ export class AdminService {
     category: any
   }) {
     return this.http.post<Book>('http://localhost:3000/books/', book, { headers: this.getHttpHeaders() });
+  }
+
+  getWaitingList() {
+    return this.http.get<WaitingList[]>('http://localhost:3000/reservation/waiting-list', { headers: this.getHttpHeaders() });
   }
 }

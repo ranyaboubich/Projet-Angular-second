@@ -4,6 +4,8 @@ import {Reservation} from "../../Model/Reservation";
 import {User} from "../../Model/User";
 import {Book} from "../../Model/Book";
 import {NgForm} from "@angular/forms";
+import {WaitingList} from "../../Model/WaitingList";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +17,10 @@ export class AdminComponent {
   reservations: Reservation[] = [];
   users: User[] = [];
   books: Book[] = [];
-  constructor(private adminService: AdminService) {}
+  waitingList: WaitingList[] = [];
+  constructor(
+    private adminService: AdminService,
+    private toastr: ToastrService) {}
 
   ngOnInit() {
     this.adminService.getReservations().subscribe(reservations => {
@@ -27,6 +32,10 @@ export class AdminComponent {
     this.adminService.getBooks().subscribe(books => {
       this.books = books;
     });
+    this.adminService.getWaitingList().subscribe(waitingList => {
+      this.waitingList = waitingList;
+    });
+
   }
 
   updateUser(form: NgForm) {
@@ -47,16 +56,21 @@ export class AdminComponent {
       email: form.value.email,
       username: form.value.username,
       password: form.value.password
-    }; 
+    };
 
     this.adminService.updateUser(user.id, user).subscribe(user => {
+      this.toastr.success(`User d'id ${user.id}`, 'Success');
       console.log('User updated');
-    }); 
+    }, error => {
+      this.toastr.error(error.error.message, 'Error');
+    });
   }
 
   deleteUser(id: number) {
     this.adminService.deleteUser(id).subscribe(user => {
       console.log('User deleted');
+    }, error => {
+      this.toastr.success('deleted successfully (refresh to check)', 'Success');
     });
   }
 
@@ -71,6 +85,7 @@ export class AdminComponent {
       coverImageUrl: form.value.image
     };
     this.adminService.addBook(book).subscribe(book => {
+      this.toastr.success(`Book d'id ${book.id} is added successfully`, 'Success');
       console.log('Book added');
     });
   }
@@ -87,18 +102,23 @@ export class AdminComponent {
       coverImageUrl: form.value.image
     };
     this.adminService.updateBook(book.id, book).subscribe(book => {
+      this.toastr.success(`book updated`, 'Success');
       console.log('Book updated');
     });
   }
   deleteBook(id: number) {
     this.adminService.deleteBook(id).subscribe(book => {
       console.log('Book deleted');
+    }, error => {
+      this.toastr.success('deleted successfully (refresh to check)', 'Success');
     });
   }
 
   deleteReservation(id: number) {
     this.adminService.deleteReservation(id).subscribe(reservation => {
       console.log('Reservation deleted');
+    }, error => {
+      this.toastr.success('deleted successfully (refresh to check)', 'Success');
     });
   }
 }

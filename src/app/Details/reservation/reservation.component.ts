@@ -18,17 +18,25 @@ export class ReservationComponent {
   ngOnInit(): void {}
   reserve(): void {
     this.reservationService.addreservation(this.book.id) // Call the service method with the book's id
-      .subscribe(
-        response => {
-          console.log(response);
-          this.toastr.success('CV retiré avec succès!', 'Succès', {timeOut: 1000});
-          // Handle successful reservation here
-        },
-        error => {
-          // Display the error message using ToastrService
-          this.toastr.error(error.error.message, 'Error');
-          // Handle errors here
+      .subscribe( isReserved => {
+        if (isReserved){
+          // @ts-ignore
+          const user = JSON.parse(localStorage.getItem('currentUser'));
+          //l book w l user kaadin yarjouu jawhom behi
+          this.reservationService.getReservationsById(this.book.id,user).subscribe( reserver => {
+            console.log('le user qui a reserve le book',reserver.username);
+            if (reserver.id !== user.id){
+              this.toastr.error('You are added to the waiting list', 'Error');
+            }
+            }
+          )
+        }else{
+          this.toastr.success('Book reserved successfully', 'Success');
         }
+        }, error => {
+          this.toastr.error(error.error.message, 'Error');
+        }
+
       );
   }
 }

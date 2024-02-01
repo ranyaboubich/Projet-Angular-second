@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError, Observable, throwError} from 'rxjs';
 import { User } from '../Model/User';
+import {Reservation} from "../Model/Reservation";
 
 
 @Injectable({
@@ -32,5 +33,9 @@ export class ReservationService {
         return throwError(error);
       })
     );
+  }
+  getReservationsById(id: number, user: User): Observable<User> {
+    const params = new HttpParams().set('id', id.toString()).set('user', JSON.stringify(user));
+    return this.http.get<User>(this.apiUrl, { headers: this.getHttpHeaders(), params: params });
   }
 }

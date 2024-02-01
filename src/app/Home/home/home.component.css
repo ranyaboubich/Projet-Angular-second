@@ -2,20 +2,22 @@
 
 /* Style the container inside the page */
 .container {
- width: 60%;
-  margin-top: 50px;
+ width: 40%;
+  margin-top: 100px;
   backdrop-filter: contrast(30%);
   border: 1px solid #b9baaa;
   border-radius: 8px;
-  padding: 20px;  
+  padding: 20px;
 
 }
 
 /* Style the heading */
 h1 {
+  text-align: center;
   font-size: 32px;
   color: #000;
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 /* Style the paragraphs */
