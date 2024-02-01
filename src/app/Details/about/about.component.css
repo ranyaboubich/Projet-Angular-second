@@ -1,0 +1,10 @@
+.card{
+  margin-right: 50px;
+  height: auto;
+  width: 700px;
+  background-color: rgba(255, 252, 240, 0.784);
+}
+.genre{
+  font-weight: bold; /* Makes the text bold */
+  font-family: sans-serif;
+}

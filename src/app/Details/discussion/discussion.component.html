@@ -1,11 +1,13 @@
-<form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+<div class="container">
+  <div class="submit-review">
+<form #review_form="ngForm" id="container" (ngSubmit)="onSubmit()">
   <label>
     Comment:
-    <input type="text" formControlName="comment" />
+    <input type="text" [(ngModel)]="comment" name="comment" />
   </label>
   <label>
     Rating:
-    <p-rating formControlName="value" [cancel]="false" [stars]="5">
+    <p-rating [(ngModel)]="selectedStars" [cancel]="false" [stars]="5" name="rating">
       <ng-template pTemplate="onicon">
         <img
           src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon-active.png"
@@ -27,13 +29,17 @@
 
   <button type="submit">Submit</button>
 </form>
+  </div>
 
-<div
-  style="background-color: rgba(255, 252, 240, 0.784); margin-right: 50px"
+  <div class="comment-container">
+<div class="li-taht-comment"
   *ngFor="let review of reviews"
 >
-  <h3>{{ review.user.username }}</h3>
+  <p class="username">{{ review.user.username }} :</p>
+  <span *ngFor="let star of getStars(review.rating)">⭐</span>
   <p>{{ review.content }}</p>
 
-  <span *ngFor="let star of getStars(review.rating)">⭐</span>
+
+</div>
+  </div>
 </div>

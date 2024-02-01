@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Book } from '../../Model/Book';
 import { Router } from '@angular/router';
 import { ReservationService } from '../../Services/reservation.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-reservation',
@@ -9,7 +10,9 @@ import { ReservationService } from '../../Services/reservation.service';
   styleUrl: './reservation.component.css',
 })
 export class ReservationComponent {
-  constructor(private route: Router,private reservationService: ReservationService) {}
+  constructor(private route: Router,
+              private reservationService: ReservationService,
+              private toastr: ToastrService) {}
   @Input() book!: Book;
 
   ngOnInit(): void {}
@@ -18,10 +21,12 @@ export class ReservationComponent {
       .subscribe(
         response => {
           console.log(response);
+          this.toastr.success('CV retiré avec succès!', 'Succès', {timeOut: 1000});
           // Handle successful reservation here
         },
-        error => {          
-          console.log(error);
+        error => {
+          // Display the error message using ToastrService
+          this.toastr.error(error.error.message, 'Error');
           // Handle errors here
         }
       );

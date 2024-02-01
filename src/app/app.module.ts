@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StarRatingModule } from 'angular-star-rating';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AdminComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -53,6 +55,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatFormFieldModule,
     StarRatingModule.forRoot(),
     RatingModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
