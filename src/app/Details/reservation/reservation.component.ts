@@ -19,22 +19,23 @@ export class ReservationComponent {
   reserve(): void {
     this.reservationService.addreservation(this.book.id) // Call the service method with the book's id
       .subscribe( isReserved => {
+        console.log(isReserved);
         if (isReserved){
           // @ts-ignore
           const user = JSON.parse(localStorage.getItem('currentUser'));
           //l book w l user kaadin yarjouu jawhom behi
           this.reservationService.getReservationsById(this.book.id,user).subscribe( reserver => {
-            console.log('le user qui a reserve le book',reserver.username);
-            if (reserver.id !== user.id){
+            console.log('le user qui a reserve le book',reserver.user.username);
+            if (reserver.user.id !== user.id){
               this.toastr.error('You are added to the waiting list', 'Error');
             }
             }
           )
-        }else{
+        }else {
           this.toastr.success('Book reserved successfully', 'Success');
         }
         }, error => {
-          this.toastr.error(error.error.message, 'Error');
+          this.toastr.info(error.error.message, 'Error');
         }
 
       );

@@ -59,7 +59,7 @@ export class AdminComponent {
     };
 
     this.adminService.updateUser(user.id, user).subscribe(user => {
-      this.toastr.success(`User d'id ${user.id}`, 'Success');
+      this.toastr.success(`Updated User`, 'Success');
       console.log('User updated');
     }, error => {
       this.toastr.error(error.error.message, 'Error');

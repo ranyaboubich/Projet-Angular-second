@@ -26,7 +26,6 @@ export class ReservationService {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const token = currentUser.access_token;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    console.log(headers);
     return this.http.post('http://localhost:3000/reservation/'+id, {}, {headers}).pipe(
       catchError(error => {
         console.error('Error:', error);
@@ -34,8 +33,8 @@ export class ReservationService {
       })
     );
   }
-  getReservationsById(id: number, user: User): Observable<User> {
+  getReservationsById(id: number, user: User): Observable<Reservation> {
     const params = new HttpParams().set('id', id.toString()).set('user', JSON.stringify(user));
-    return this.http.get<User>(this.apiUrl, { headers: this.getHttpHeaders(), params: params });
+    return this.http.get<Reservation>('http://localhost:3000/reservation/'+id, { headers: this.getHttpHeaders(), params: params });
   }
 }
